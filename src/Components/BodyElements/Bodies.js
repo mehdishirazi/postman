@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Bodies = () => {
+const Bodies = (props) => {
     return(
-        <div>
-        <h1>Add Bodies(--data)</h1>
-        <button>+</button>
+        <div className={props.className}>
+        <h3>Add Bodies(--data)</h3>
         <br></br>
+        <button>+</button>
         <input type="text" placeholder="key" />
         <input type="text" placeholder="value" />
         <br />

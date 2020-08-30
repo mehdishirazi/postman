@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Headers = () => {
+const Headers = (props) => {
     return (
-        <div>
-            <h1>Add Headers(-H)</h1>
-            <button>+</button>
+        <div className={props.className}>
+            <h3>Add Headers(-H)</h3>
             <br></br>
+            <button>+</button>
             <input type="text" placeholder="key" />
             <input type="text" placeholder="value" />
             <br />
