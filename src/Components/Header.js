@@ -19,8 +19,8 @@ componentDidMount() {
             <div className="flex-container">
                 {this.state.isLoadingImg ? <img src={Postman} className="flex-item-one"></img> : null}
                 <nav className="flex-item-two">
-                    <nav className="api">APIs</nav>
-                    <nav className="curl">curl</nav>
+                    <button className="api">APIs</button>
+                    <button className="curl">curl</button>
                 </nav>
             </div>
         )
