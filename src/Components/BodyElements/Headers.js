@@ -5,7 +5,7 @@ const Headers = (props) => {
         <div className={props.className}>
             <h3>Add Headers(-H)</h3>
             <br></br>
-            <button>+</button>
+            <button onClick={props.click}>+</button>
             <input type="text" placeholder="key" />
             <input type="text" placeholder="value" />
             <br />
