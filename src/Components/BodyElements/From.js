@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Bodies = (props) => {
+const Form = (props) => {
     return(
         <div className={props.className}>
         <h3>Add Bodies(--data)</h3>
@@ -13,4 +13,4 @@ const Bodies = (props) => {
     )
 }
 
-export default Bodies
+export default Form

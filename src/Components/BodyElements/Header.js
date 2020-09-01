@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Headers = (props) => {
+const Header = (props) => {
     return (
         <div className={props.className}>
-            <h3>Add Headers(-H)</h3>
+            <h3>Add Header(-H)</h3>
             <br></br>
             <button onClick={props.click}>+</button>
             <input type="text" placeholder="key" />
@@ -13,4 +13,4 @@ const Headers = (props) => {
     )
 }
 
-export default Headers
+export default Header
