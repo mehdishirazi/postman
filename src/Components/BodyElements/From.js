@@ -7,8 +7,8 @@ const Form = (props) => {
         <br></br>
         <button onClick={props.click}>+</button>
         <button onClick={props.delete}>-</button>
-        <input type="text" placeholder="key" />
-        <input type="text" placeholder="value" />
+        <input onChange={props.formHandleChange} type="text" placeholder="key" />
+        <input onChange={props.formHandleChange} type="text" placeholder="value" />
         <br />
     </div>
     )

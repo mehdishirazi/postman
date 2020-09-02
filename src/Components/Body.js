@@ -35,6 +35,30 @@ class Body extends React.Component {
         })
     }
 
+    formHandleChange = (event, id) => {
+        const value = event.target.placeholder
+        const indexCehck = this.state.body.findIndex(item => {
+            return id === item.id
+        })
+        const bodyChangeValues = [...this.state.body]
+        bodyChangeValues[indexCehck][value] = event.target.value
+        this.setState({
+            body: bodyChangeValues
+        })
+    }
+
+    headerHandleChange = (event, id) => {
+        const value = event.target.placeholder
+        const inedexCheck = this.state.header.findIndex(item => {
+            return id === item.id
+        })
+        const headerChangeValues = [...this.state.header]
+        headerChangeValues[inedexCheck][value] = event.target.value
+        this.setState({
+            header: headerChangeValues
+        })   
+    }
+
     clickHeaderHandler = () => {
         let headerNumber = [...this.state.header]
         let headerValue = headerNumber.length + 1
@@ -54,7 +78,6 @@ class Body extends React.Component {
     }
 
     clickFormHandler = () => {
-        debugger
         let formNumber = [...this.state.body]
         let formValue = formNumber.length + 1
         formNumber.push({ id: formValue, key: "", value: "" })
@@ -74,10 +97,10 @@ class Body extends React.Component {
     render() {
         console.log(this.state)
         let headerElement = this.state.header.map((item, index) => {
-            return <Header key={item.id} delete={() => this.deleteHeaderHandler(index)} click={this.clickHeaderHandler} className="params" />
+            return <Header key={item.id} headerHandleChange={(event) => this.headerHandleChange(event, item.id)} delete={() => this.deleteHeaderHandler(index)} click={this.clickHeaderHandler} className="params" />
         })
         let formElement = this.state.body.map((item, index) => {
-            return <Form key={item.id} delete={() => this.deleteFormHandler(index)} click={this.clickFormHandler} className="params" />
+            return <Form key={item.id} formHandleChange={(event) => this.formHandleChange(event, item.id)} delete={() => this.deleteFormHandler(index)} click={this.clickFormHandler} className="params" />
         })
         return (
             <div className="body">
