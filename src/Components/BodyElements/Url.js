@@ -4,9 +4,10 @@ const Url = (props) => {
     return (
         <div>
             <h1>Call your API</h1>
-            <input type="text" placeholder="VERB"></input>
-            <input type="text" placeholder="URL"></input>
+            <input onChange={props.urlHandleChange} type="text" placeholder="VERB"></input>
+            <input onChange={props.urlHandleChange} type="text" placeholder="URL"></input>
             <button onClick={props.clicked}>Params</button>
+            {props.isShowingFetchApi ? <button>Fetch Your API</button> : null}
         </div>
     )
 }

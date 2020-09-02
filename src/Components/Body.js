@@ -10,6 +10,7 @@ class Body extends React.Component {
         super()
         this.state = {
             isShowingValue: false,
+            url: [],
             header: [],
             body: []
         }
@@ -35,6 +36,19 @@ class Body extends React.Component {
         })
     }
 
+    urlHandleChange = (event) => {
+        let urlValues = [{ verb: "", url: "" }]
+        let value = event.target.placeholder
+        if (value === "VERB") {
+            urlValues[0][value] = event.target.value.toUpperCase()
+        } else {
+            urlValues[0][value] = event.target.value
+        }
+        this.setState({
+            url: urlValues
+        })
+    }
+
     formHandleChange = (event, id) => {
         const value = event.target.placeholder
         const indexCehck = this.state.body.findIndex(item => {
@@ -56,7 +70,7 @@ class Body extends React.Component {
         headerChangeValues[inedexCheck][value] = event.target.value
         this.setState({
             header: headerChangeValues
-        })   
+        })
     }
 
     clickHeaderHandler = () => {
@@ -104,7 +118,7 @@ class Body extends React.Component {
         })
         return (
             <div className="body">
-                <Url clicked={this.addPramsHandler} />
+                <Url isShowingFetchApi={this.state.isShowingValue} urlHandleChange={(event) => this.urlHandleChange(event)} clicked={this.addPramsHandler} />
                 {this.state.isShowingValue ? headerElement : null}
                 {this.state.isShowingValue ? formElement : null}
             </div>
