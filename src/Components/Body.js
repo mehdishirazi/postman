@@ -10,43 +10,80 @@ class Body extends React.Component {
         super()
         this.state = {
             isShowingValue: false,
-            header: ["0"],
-            body: ["0"]
+            header: [],
+            body: []
         }
     }
 
     addPramsHandler = () => {
         this.setState({
-            isShowingValue: true
+            isShowingValue: true,
+            header: [
+                {
+                    id: 1,
+                    key: "",
+                    value: ""
+                }
+            ],
+            body: [
+                {
+                    id: 1,
+                    key: "",
+                    value: ""
+                }
+            ]
         })
     }
 
-    clickHeaderHandler = (event) => {
-        let headerNumber = event.timeStamp
-        let showingHeader = this.state.header
-        showingHeader.push(headerNumber)
+    clickHeaderHandler = () => {
+        let headerNumber = [...this.state.header]
+        let headerValue = headerNumber.length + 1
+        headerNumber.push({ id: headerValue, key: "", value: "" })
         this.setState({
-            header: showingHeader
+            header: headerNumber
+        })
+
+    }
+
+    deleteHeaderHandler = (index) => {
+        const headerDeleted = [...this.state.header]
+        headerDeleted.splice(index, 1)
+        this.setState({
+            header: headerDeleted
         })
     }
 
-    clickBodyHandler = (event) => {
-        let bodyNumber = event.timeStamp
-        let showingBody = this.state.body
-        showingBody.push(bodyNumber)
+    clickFormHandler = () => {
+        debugger
+        let formNumber = [...this.state.body]
+        let formValue = formNumber.length + 1
+        formNumber.push({ id: formValue, key: "", value: "" })
         this.setState({
-            body: showingBody
+            body: formNumber
+        })
+    }
+
+    deleteFormHandler = (index) => {
+        const formDeleted = [...this.state.body]
+        formDeleted.splice(index, 1)
+        this.setState({
+            body: formDeleted
         })
     }
 
     render() {
-        let headerTag = this.state.header.map(item => <Header key={item} click={this.clickHeaderHandler} className="params"/>)
-        let bodyTag = this.state.body.map(item => <Form key={item} click={this.clickBodyHandler} className="params" />)
+        console.log(this.state)
+        let headerElement = this.state.header.map((item, index) => {
+            return <Header key={item.id} delete={() => this.deleteHeaderHandler(index)} click={this.clickHeaderHandler} className="params" />
+        })
+        let formElement = this.state.body.map((item, index) => {
+            return <Form key={item.id} delete={() => this.deleteFormHandler(index)} click={this.clickFormHandler} className="params" />
+        })
         return (
             <div className="body">
-                <Url clicked={this.addPramsHandler}/>
-                {this.state.isShowingValue ? headerTag : null}
-                {this.state.isShowingValue ? bodyTag : null}
+                <Url clicked={this.addPramsHandler} />
+                {this.state.isShowingValue ? headerElement : null}
+                {this.state.isShowingValue ? formElement : null}
             </div>
         )
     }

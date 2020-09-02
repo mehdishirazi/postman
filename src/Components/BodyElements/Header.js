@@ -6,6 +6,7 @@ const Header = (props) => {
             <h3>Add Header(-H)</h3>
             <br></br>
             <button onClick={props.click}>+</button>
+            <button onClick={props.delete}>-</button>
             <input type="text" placeholder="key" />
             <input type="text" placeholder="value" />
             <br />
