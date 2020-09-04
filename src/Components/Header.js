@@ -1,30 +1,17 @@
 import React from 'react'
-import "./Header.css"
-import Postman from "../Img/Postman.png"
 
-class Header extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            isLoadingImg: false
-        }
-    }
-
-componentDidMount() {
-    this.setState({isLoadingImg: true})
-}
-
-    render() {
-        return (
-            <div className="flex-container">
-                {this.state.isLoadingImg ? <img src={Postman} className="flex-item-one"></img> : null}
-                <nav className="flex-item-two">
-                    <button className="api">APIs</button>
-                    <button className="curl">curl</button>
-                </nav>
-            </div>
-        )
-    }
+const Header = (props) => {
+    return (
+        <div className={props.className}>
+            <h3>Add Header(-H)</h3>
+            <br></br>
+            <button onClick={props.click}>+</button>
+            <button onClick={props.delete}>-</button>
+            <input onChange={props.headerHandleChange} type="text" placeholder="key" />
+            <input onChange={props.headerHandleChange} type="text" placeholder="value" />
+            <br />
+        </div>
+    )
 }
 
 export default Header

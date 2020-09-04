@@ -1,8 +1,8 @@
 import React from 'react'
-import Url from "./BodyElements/Url"
-import Header from "./BodyElements/Header"
-import Form from "./BodyElements/From"
-import "./Body.css"
+import Url from "./Url"
+import Header from "./Header"
+import Form from "./From"
+import "../Style/Body.css"
 
 
 class Body extends React.Component {
@@ -10,10 +10,49 @@ class Body extends React.Component {
         super()
         this.state = {
             isShowingValue: false,
-            url: [],
+            url: [{ url: "", verb: "" }],
             header: [],
             body: []
         }
+    }
+
+    getHeaderValue = () => {
+        let headerContent = {}
+        let header = [...this.state.header]
+        for (let element of header) {
+            headerContent[element.key] = element.value
+        }
+        debugger
+        return headerContent
+    }
+
+    getBodyValue = () => {
+        let bodyContent = {}
+        let body = [...this.state.body]
+        for (let element of body) {
+            if (element.key || element.value === "") {
+                return {}
+            } else {
+                bodyContent[element.key] = element.value
+            }
+        }
+        debugger
+        return bodyContent
+    }
+
+    fetchApi = (url, verb) => {
+        console.log(this.state)
+        debugger
+        let header = this.getHeaderValue()
+        let form = this.getBodyValue()
+        debugger
+        fetch(url, {
+            method: verb,
+            headers: header,
+            body: JSON.stringify(form)
+        })
+            .then(response => response.json())
+            .then(mehdi => console.log(mehdi))
     }
 
     addPramsHandler = () => {
@@ -37,12 +76,12 @@ class Body extends React.Component {
     }
 
     urlHandleChange = (event) => {
-        let urlValues = [{ verb: "", url: "" }]
+        let urlValues = [...this.state.url]
         let value = event.target.placeholder
         if (value === "VERB") {
-            urlValues[0][value] = event.target.value.toUpperCase()
+            urlValues[0].verb = event.target.value.toUpperCase()
         } else {
-            urlValues[0][value] = event.target.value
+            urlValues[0].url = event.target.value
         }
         this.setState({
             url: urlValues
@@ -109,16 +148,29 @@ class Body extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         let headerElement = this.state.header.map((item, index) => {
-            return <Header key={item.id} headerHandleChange={(event) => this.headerHandleChange(event, item.id)} delete={() => this.deleteHeaderHandler(index)} click={this.clickHeaderHandler} className="params" />
+            return <Header
+                key={item.id}
+                headerHandleChange={(event) => this.headerHandleChange(event, item.id)}
+                delete={() => this.deleteHeaderHandler(index)}
+                click={this.clickHeaderHandler}
+                className="params" />
         })
         let formElement = this.state.body.map((item, index) => {
-            return <Form key={item.id} formHandleChange={(event) => this.formHandleChange(event, item.id)} delete={() => this.deleteFormHandler(index)} click={this.clickFormHandler} className="params" />
+            return <Form
+                key={item.id}
+                formHandleChange={(event) => this.formHandleChange(event, item.id)}
+                delete={() => this.deleteFormHandler(index)}
+                click={this.clickFormHandler}
+                className="params" />
         })
         return (
             <div className="body">
-                <Url isShowingFetchApi={this.state.isShowingValue} urlHandleChange={(event) => this.urlHandleChange(event)} clicked={this.addPramsHandler} />
+                <Url
+                    fetchApiCall={() => this.fetchApi(this.state.url[0].url, this.state.url[0].verb)}
+                    isShowingFetchApi={this.state.isShowingValue}
+                    urlHandleChange={(event) => this.urlHandleChange(event)}
+                    clicked={this.addPramsHandler} />
                 {this.state.isShowingValue ? headerElement : null}
                 {this.state.isShowingValue ? formElement : null}
             </div>
