@@ -16,13 +16,16 @@ class Body extends React.Component {
         }
     }
 
+    componentDidUpdate () {
+        console.log('componentDidUpdate')
+    }
+
     getHeaderValue = () => {
         let headerContent = {}
         let header = [...this.state.header]
         for (let element of header) {
             headerContent[element.key] = element.value
         }
-        debugger
         return headerContent
     }
 
@@ -30,27 +33,37 @@ class Body extends React.Component {
         let bodyContent = {}
         let body = [...this.state.body]
         for (let element of body) {
-            if (element.key || element.value === "") {
-                return {}
+            if (element.key === "" || element.value === "") {
+                return bodyContent = null
             } else {
                 bodyContent[element.key] = element.value
             }
         }
-        debugger
+        console.log(bodyContent)
         return bodyContent
+    }
+
+    gatherRequestparams = (verb, header, form) => {
+        console.log(form)
+        let objectForFetch = {}
+        objectForFetch.method = verb
+        objectForFetch.headers = header
+        if (form === null) {
+            return objectForFetch
+        } else {
+            let body = JSON.stringify(form)
+            objectForFetch.body = body
+        }
+        return objectForFetch
     }
 
     fetchApi = (url, verb) => {
         console.log(this.state)
-        debugger
         let header = this.getHeaderValue()
         let form = this.getBodyValue()
-        debugger
-        fetch(url, {
-            method: verb,
-            headers: header,
-            body: JSON.stringify(form)
-        })
+        let requestparams = this.gatherRequestparams(verb, header, form)
+        
+        fetch(url, requestparams)
             .then(response => response.json())
             .then(mehdi => console.log(mehdi))
     }
