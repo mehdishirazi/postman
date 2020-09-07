@@ -1,9 +1,22 @@
 .body {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+    justify-content: center;
+}
+
+.infoDiv {
+    display: flex;
+    flex-direction: row;
+}
+.infoDiv > div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
 }
 
 .params {
-    width: 40%;
+   
     margin: 16px auto;
     border: 1px solid #eeeeee;
     box-shadow: 0 2px 3px #cccccc;

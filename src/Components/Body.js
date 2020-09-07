@@ -16,7 +16,7 @@ class Body extends React.Component {
         }
     }
 
-    componentDidUpdate () {
+    componentDidUpdate() {
         console.log('componentDidUpdate')
     }
 
@@ -62,7 +62,7 @@ class Body extends React.Component {
         let header = this.getHeaderValue()
         let form = this.getBodyValue()
         let requestparams = this.gatherRequestparams(verb, header, form)
-        
+
         fetch(url, requestparams)
             .then(response => response.json())
             .then(mehdi => console.log(mehdi))
@@ -184,8 +184,15 @@ class Body extends React.Component {
                     isShowingFetchApi={this.state.isShowingValue}
                     urlHandleChange={(event) => this.urlHandleChange(event)}
                     clicked={this.addPramsHandler} />
-                {this.state.isShowingValue ? headerElement : null}
-                {this.state.isShowingValue ? formElement : null}
+                <div className="infoDiv">
+                    <div>
+                        {this.state.isShowingValue ? headerElement : null}
+                    </div>
+                    <div>
+                        {this.state.isShowingValue ? formElement : null}
+                    </div>
+
+                </div>
             </div>
         )
     }
