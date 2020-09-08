@@ -1,8 +1,8 @@
 import React from 'react'
-import Url from "./Url"
-import Header from "./Header"
-import Form from "./From"
-import "../Style/Body.css"
+import Header from './Forms/Header'
+import Url from './Forms/Url'
+import Form from "./Forms/From"
+import "../../style/Body.css"
 
 
 class Body extends React.Component {
@@ -14,10 +14,6 @@ class Body extends React.Component {
             header: [],
             body: []
         }
-    }
-
-    componentDidUpdate() {
-        console.log('componentDidUpdate')
     }
 
     getHeaderValue = () => {
@@ -39,7 +35,6 @@ class Body extends React.Component {
                 bodyContent[element.key] = element.value
             }
         }
-        console.log(bodyContent)
         return bodyContent
     }
 
@@ -66,6 +61,7 @@ class Body extends React.Component {
         fetch(url, requestparams)
             .then(response => response.json())
             .then(mehdi => console.log(mehdi))
+            .catch(Error => console.log(Error))
     }
 
     addPramsHandler = () => {
@@ -167,7 +163,10 @@ class Body extends React.Component {
                 headerHandleChange={(event) => this.headerHandleChange(event, item.id)}
                 delete={() => this.deleteHeaderHandler(index)}
                 click={this.clickHeaderHandler}
-                className="params" />
+                className="params"
+                btnStyle="paramsBtn"
+                minusBtn="minusBtn"
+                input="input" />
         })
         let formElement = this.state.body.map((item, index) => {
             return <Form
@@ -175,7 +174,10 @@ class Body extends React.Component {
                 formHandleChange={(event) => this.formHandleChange(event, item.id)}
                 delete={() => this.deleteFormHandler(index)}
                 click={this.clickFormHandler}
-                className="params" />
+                className="params"
+                btnStyle="paramsBtn"
+                minusBtn="minusBtn"
+                input="input" />
         })
         return (
             <div className="body">
@@ -183,7 +185,9 @@ class Body extends React.Component {
                     fetchApiCall={() => this.fetchApi(this.state.url[0].url, this.state.url[0].verb)}
                     isShowingFetchApi={this.state.isShowingValue}
                     urlHandleChange={(event) => this.urlHandleChange(event)}
-                    clicked={this.addPramsHandler} />
+                    clicked={this.addPramsHandler}
+                    class="btn"
+                    input="input" />
                 <div className="infoDiv">
                     <div>
                         {this.state.isShowingValue ? headerElement : null}

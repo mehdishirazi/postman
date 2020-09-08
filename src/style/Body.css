@@ -1,0 +1,72 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+    justify-content: center;
+}
+
+.input {
+    margin-right: 5px;
+}
+
+.btn {
+    outline-style: none;
+    padding: 5px;
+    color: honeydew;
+    border-color: #117ab7;
+    background-color: #0895d8;
+    border-radius: 7px;
+    margin-left: 8px;
+    box-shadow: 3px 4px #eeeeee;
+}
+
+.btn:hover {
+    background-color: #0480f9;
+    color: black;
+} 
+
+.paramsBtn {
+    background-color: #7ba428;
+    border-radius: 3px;
+    color: honeydew;
+    margin-right: 3px;
+    box-shadow: 3px 4px #eeeeee;
+}
+
+.paramsBtn:hover{
+    background-color: #739c1e;
+    color: black;
+}
+
+.minusBtn {
+    background-color: #ff4500;
+    border-radius: 3px;
+    color: honeydew;
+    margin-right: 3px;
+    box-shadow: 3px 4px #eeeeee;
+}
+
+.minusBtn:hover {
+    background-color: #cc3801;
+    color: black;
+}
+
+.infoDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.infoDiv > div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 16px;
+}
+
+.params {
+    margin: 16px auto;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 2px 3px #cccccc;
+    padding: 16px;
+    text-align: center;
+}

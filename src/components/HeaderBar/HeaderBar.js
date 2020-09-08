@@ -1,6 +1,6 @@
 import React from 'react'
-import "../Style/Header.css"
-import Postman from "../Img/Postman.png"
+import "../../style/Header.css"
+import Postman from "../../assets/Postman.png"
 
 class HeaderBar extends React.Component {
     constructor() {
