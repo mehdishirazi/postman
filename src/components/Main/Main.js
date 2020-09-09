@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './Forms/Header'
 import Url from './Forms/Url'
 import Form from "./Forms/From"
+import Table from "./Table"
 import "../../style/Body.css"
 
 
@@ -12,7 +13,8 @@ class Body extends React.Component {
             isShowingValue: false,
             url: [{ url: "", verb: "" }],
             header: [],
-            body: []
+            body: [],
+            data: null
         }
     }
 
@@ -39,7 +41,6 @@ class Body extends React.Component {
     }
 
     gatherRequestparams = (verb, header, form) => {
-        console.log(form)
         let objectForFetch = {}
         objectForFetch.method = verb
         objectForFetch.headers = header
@@ -53,14 +54,13 @@ class Body extends React.Component {
     }
 
     fetchApi = (url, verb) => {
-        console.log(this.state)
         let header = this.getHeaderValue()
         let form = this.getBodyValue()
         let requestparams = this.gatherRequestparams(verb, header, form)
 
         fetch(url, requestparams)
             .then(response => response.json())
-            .then(mehdi => console.log(mehdi))
+            .then(data => this.setState({ data: data }))
             .catch(Error => console.log(Error))
     }
 
@@ -179,6 +179,18 @@ class Body extends React.Component {
                 minusBtn="minusBtn"
                 input="input" />
         })
+        let tableHeaders = []
+        if (this.state.data === null) {
+            console.log('head')
+        } else {
+            debugger
+            console.log(this.state.data[0])
+            for (let element in this.state.data[0]){
+                tableHeaders.push(element.key)
+            }
+            return tableHeaders
+        }
+        let setTableHeaders = tableHeaders.map(item => <th>{item}</th>)
         return (
             <div className="body">
                 <Url
@@ -195,8 +207,16 @@ class Body extends React.Component {
                     <div>
                         {this.state.isShowingValue ? formElement : null}
                     </div>
-
                 </div>
+                {this.state.data === null ? null :
+                    <div>
+                        <table>
+                            <tr>
+                               {setTableHeaders}
+                            </tr>
+                        </table>
+                        <Table info={this.state.data} head={this.state.data[0]} />
+                    </div>}
             </div>
         )
     }
