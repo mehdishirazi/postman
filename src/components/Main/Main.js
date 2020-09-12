@@ -4,6 +4,7 @@ import Url from './Forms/Url'
 import Form from "./Forms/From"
 import Table from "./Table"
 import "../../style/Body.css"
+import TableHeader from './TableHeader'
 
 
 class Body extends React.Component {
@@ -179,18 +180,8 @@ class Body extends React.Component {
                 minusBtn="minusBtn"
                 input="input" />
         })
-        let tableHeaders = []
-        if (this.state.data === null) {
-            console.log('head')
-        } else {
-            debugger
-            console.log(this.state.data[0])
-            for (let element in this.state.data[0]){
-                tableHeaders.push(element.key)
-            }
-            return tableHeaders
-        }
-        let setTableHeaders = tableHeaders.map(item => <th>{item}</th>)
+        let TableView
+        this.state.data === null ? TableView = null : TableView = this.state.data.map((item, index) => <Table info={item} key={index} />)
         return (
             <div className="body">
                 <Url
@@ -209,14 +200,12 @@ class Body extends React.Component {
                     </div>
                 </div>
                 {this.state.data === null ? null :
-                    <div>
-                        <table>
-                            <tr>
-                               {setTableHeaders}
-                            </tr>
-                        </table>
-                        <Table info={this.state.data} head={this.state.data[0]} />
-                    </div>}
+                    <table>
+                        <tbody>
+                            {this.state.data === null ? null : <TableHeader info={this.state.data[0]} />}
+                            {TableView}
+                        </tbody>
+                    </table>}
             </div>
         )
     }
