@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from './Forms/Header'
+import Headers from './Forms/Header'
 import Url from './Forms/Url'
 import Form from "./Forms/From"
 import Table from "./Table"
@@ -65,25 +65,6 @@ class Body extends React.Component {
             .catch(Error => console.log(Error))
     }
 
-    addPramsHandler = () => {
-        this.setState({
-            isShowingValue: true,
-            header: [
-                {
-                    id: 1,
-                    key: "",
-                    value: ""
-                }
-            ],
-            body: [
-                {
-                    id: 1,
-                    key: "",
-                    value: ""
-                }
-            ]
-        })
-    }
 
     urlHandleChange = (event) => {
         let urlValues = [...this.state.url]
@@ -110,16 +91,17 @@ class Body extends React.Component {
         })
     }
 
-    headerHandleChange = (event, id) => {
-        const value = event.target.placeholder
-        const inedexCheck = this.state.header.findIndex(item => {
-            return id === item.id
-        })
-        const headerChangeValues = [...this.state.header]
-        headerChangeValues[inedexCheck][value] = event.target.value
-        this.setState({
-            header: headerChangeValues
-        })
+    headerHandleChange = (event) => {
+        // debugger
+        // // const value = event.target.placeholder
+        // // const inedexCheck = this.state.header.findIndex(item => {
+        // //     return id === item.id
+        // // })
+        // // const headerChangeValues = [...this.state.header]
+        // // headerChangeValues[inedexCheck][value] = event.target.value
+        // this.setState({
+        //     header: headerChangeValues
+        // })
     }
 
     clickHeaderHandler = () => {
@@ -158,28 +140,8 @@ class Body extends React.Component {
     }
 
     render() {
-        let headerElement = this.state.header.map((item, index) => {
-            return <Header
-                key={item.id}
-                headerHandleChange={(event) => this.headerHandleChange(event, item.id)}
-                delete={() => this.deleteHeaderHandler(index)}
-                click={this.clickHeaderHandler}
-                className="params"
-                btnStyle="paramsBtn"
-                minusBtn="minusBtn"
-                input="input" />
-        })
-        let formElement = this.state.body.map((item, index) => {
-            return <Form
-                key={item.id}
-                formHandleChange={(event) => this.formHandleChange(event, item.id)}
-                delete={() => this.deleteFormHandler(index)}
-                click={this.clickFormHandler}
-                className="params"
-                btnStyle="paramsBtn"
-                minusBtn="minusBtn"
-                input="input" />
-        })
+        console.log(this.state)
+
         let TableView
         this.state.data === null ? TableView = null : TableView = this.state.data.map((item, index) => <Table info={item} key={index} />)
         return (
@@ -193,10 +155,24 @@ class Body extends React.Component {
                     input="input" />
                 <div className="infoDiv">
                     <div>
-                        {this.state.isShowingValue ? headerElement : null}
+                        <Headers
+                            headerHandleChange={(event) => this.headerHandleChange(event)}
+                            headers={this.state.header}
+                            delete={() => this.deleteHeaderHandler()}
+                            click={this.clickHeaderHandler}
+                            className="params"
+                            btnStyle="paramsBtn"
+                            minusBtn="minusBtn"
+                            input="input" />
                     </div>
                     <div>
-                        {this.state.isShowingValue ? formElement : null}
+                        <Form
+                            delete={() => this.deleteFormHandler()}
+                            click={this.clickFormHandler}
+                            className="params"
+                            btnStyle="paramsBtn"
+                            minusBtn="minusBtn"
+                            input="input" />
                     </div>
                 </div>
                 {this.state.data === null ? null :
