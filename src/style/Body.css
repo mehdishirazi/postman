@@ -27,6 +27,8 @@
 
 .paramsBtn {
     background-color: #7ba428;
+    margin: 17px 0px 15px 20px;
+    width: 220px;
     border-radius: 3px;
     color: honeydew;
     margin-right: 3px;
@@ -64,10 +66,12 @@
 }
 
 .params {
-    margin: 16px auto;
+    display: flex;
+    flex-direction: column;
+    margin: 18px 55px;
     border: 1px solid #eeeeee;
     box-shadow: 0 2px 3px #cccccc;
-    padding: 16px;
+    padding: 3px 69px 0px 70px;
     text-align: center;
 }
 
@@ -87,3 +91,16 @@ table, th, td {
   tr:nth-child(even) {
     background: #c9daf8;
   }
+
+  .params-header {
+      display: flex;
+      flex-direction: column;
+      margin: auto auto auto auto;
+  }
+
+  
+  .params-header > div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4px;
+}
