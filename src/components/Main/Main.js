@@ -7,7 +7,7 @@ import "../../style/Body.css"
 import TableHeader from './TableHeader'
 
 
-class Body extends React.Component {
+class Body extends React.PureComponent {
     constructor() {
         super()
         this.state = {
@@ -19,6 +19,7 @@ class Body extends React.Component {
             data: null
         }
     }
+
 
     getHeaderValue = () => {
         let headerContent = {}
@@ -127,7 +128,7 @@ class Body extends React.Component {
         })
     }
 
-    headerHandleChange = (event, id) => {
+    headerHandleChange = (id, event) => {
         const value = event.target.placeholder
         const inedexCheck = this.state.header.findIndex(item => {
             return id === item.id
@@ -190,7 +191,7 @@ class Body extends React.Component {
                     <div>
                         <Headers
                             isShowingHeader={this.state.isShowingHeader}
-                            headerHandleChange={(event) => this.headerHandleChange(event)}
+                            headerHandleChange={(id, event) => this.headerHandleChange(id, event)}
                             delete={(index) => this.deleteHeaderHandler(index)}
                             click={this.addHeader}
                             header={this.state.header}
@@ -200,7 +201,7 @@ class Body extends React.Component {
                             input="input" />
                         <Form
                             isShowingForm={this.state.isShowingForm}
-                            formHandleChange={(event) => this.formHandleChange(event)}
+                            formHandleChange={(event, id) => this.formHandleChange(event, id)}
                             delete={(index) => this.deleteFormHandler(index)}
                             click={this.addForm}
                             form={this.state.body}

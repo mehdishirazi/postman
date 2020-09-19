@@ -4,7 +4,13 @@ import "../../../style/Body.css"
 
 
 const Forms = (props) => {
-    let formList = props.form.map((item, index) => <Form key={item.id} formClass="params-header" btnClass={props.minusBtn} inputClass={props.input} delete={() => props.delete(index)} />)
+    let formList = props.form.map((item, index) => <Form 
+    key={item.id}
+    formHandleChange={(event) => props.formHandleChange(event, item.id)} 
+    formClass="params-header" 
+    btnClass={props.minusBtn} 
+    inputClass={props.input} 
+    delete={() => props.delete(index)} />)
     return (
         <div className={props.className}>
             <div>
