@@ -67,6 +67,7 @@ class Body extends React.PureComponent {
             .catch(Error => console.log(Error))
     }
 
+
     addHeader = () => {
         if (this.state.isShowingHeader === false) {
             this.setState({
@@ -86,7 +87,7 @@ class Body extends React.PureComponent {
     }
 
     addForm = () => {
-        if(this.state.isShowingForm === false){
+        if (this.state.isShowingForm === false) {
             this.setState({
                 isShowingForm: true,
                 body: [
@@ -176,6 +177,10 @@ class Body extends React.PureComponent {
     }
 
     render() {
+        let responseData
+        this.state.data === null ? responseData = "" : responseData = this.state.data
+        debugger
+        console.log(responseData)
         console.log(this.state)
         let TableView
         this.state.data === null ? TableView = null : TableView = this.state.data.map((item, index) => <Table info={item} key={index} />)
@@ -211,7 +216,12 @@ class Body extends React.PureComponent {
                             input="input" />
                     </div>
                     <div>
-                        {/* {this.state.isShowingValue ? <input /> : null} */}
+                        <input placeholder="Status" disabled />
+                        {this.state.data === null ? <input value={responseData} className="responseInput" disabled /> :
+                            <pre className="responseInput">
+                                {this.state.data}
+                            </pre>
+                        }
                     </div>
                 </div>
                 {this.state.data === null ? null :
