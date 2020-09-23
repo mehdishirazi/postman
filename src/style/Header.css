@@ -1,55 +1,48 @@
 .flex-container {
     display: flex;
     align-items: flex-start;
-    margin: auto;
-    padding: 10px;
-    margin-left: 5px;
+    width: 100%;
 }
 
 .flex-item-one {
     display: flex;
     height: 51px;
-    margin-top: -2px;
 }
 
 .flex-item-two{
     display: flex;
+    align-items: center;
     flex-grow: 1;
     justify-content: flex-start;
-    margin-left: 10px;
-    margin-top: -2px;
-    background-color: #c3c3e8;
     width: 200px;
-    border: 3px solid #bbbaba;
-    border-radius: 10px;
 }
 
 
 .api {
-    margin-left: 5px;
+    text-align: center;
+    padding: 10px;
+    color: ivory;
     width: 110px;
-    padding: 14px;
-    background-color: #c3c3e8;
     border-radius: 3px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .api:hover {
-    box-shadow: 0px 0px 4px 1px  grey;
-    border-color: black;
-    background-color: rgb(123, 148, 165);
+    box-shadow: 0px 0px 4px 1px #242582;
+    border-color: #333;
+    color: #F64C72;
 }
 
 .curl {
-    margin-left: 10px;
+    text-align: center;
+    padding: 10px;
+    color: ivory;
     width: 110px;
-    padding: 14px;
-    background-color: #c3c3e8;
     border-radius: 3px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .curl:hover {
-    box-shadow: 0px 0px 4px 1px  grey;
-    border-color: black;
-    background-color: rgb(123, 148, 165);
+    box-shadow: 0px 0px 4px 1px #242582;
+    border-color: #333;
+    color: #F64C72;
 }

@@ -16,7 +16,9 @@ class Body extends React.PureComponent {
             url: [{ url: "", verb: "" }],
             header: [],
             body: [],
-            data: null
+            data: null,
+            responseStatus: null,
+            responseOk: null
         }
     }
 
@@ -62,7 +64,12 @@ class Body extends React.PureComponent {
         let requestparams = this.gatherRequestparams(verb, header, form)
 
         fetch(url, requestparams)
-            .then(response => response.json())
+            .then((response) => {
+                this.setState({
+                    responseStatus: response.status,
+                    responseOk: response.ok
+                })
+                return response.json()})
             .then(data => this.setState({ data: data }))
             .catch(Error => console.log(Error))
     }
@@ -178,9 +185,7 @@ class Body extends React.PureComponent {
 
     render() {
         let responseData
-        this.state.data === null ? responseData = "" : responseData = this.state.data
-        debugger
-        console.log(responseData)
+        this.state.data === null ? responseData = "" : responseData = JSON.stringify(this.state.data, null,'\t')
         console.log(this.state)
         let TableView
         this.state.data === null ? TableView = null : TableView = this.state.data.map((item, index) => <Table info={item} key={index} />)
@@ -191,7 +196,8 @@ class Body extends React.PureComponent {
                     isShowingFetchApi={this.state.isShowingValue}
                     urlHandleChange={(event) => this.urlHandleChange(event)}
                     class="btn"
-                    input="input" />
+                    inputVerb="input-verb"
+                    inputUrl="input-url" />
                 <div className="infoDiv">
                     <div>
                         <Headers
@@ -216,11 +222,11 @@ class Body extends React.PureComponent {
                             input="input" />
                     </div>
                     <div>
-                        <input placeholder="Status" disabled />
+                        {this.state.responseOk ? <label className="responseStatus">{"Status:" + this.state.responseStatus}</label> : <input placeholder="Status" className="responseStatus" disabled />}
                         {this.state.data === null ? <input value={responseData} className="responseInput" disabled /> :
-                            <pre className="responseInput">
-                                {this.state.data}
-                            </pre>
+                            <textarea className="responseInput">
+                                {responseData} 
+                            </textarea>
                         }
                     </div>
                 </div>

@@ -1,0 +1,23 @@
+Html, body {
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    height: 100%;
+}
+
+
+.main {
+    gap: 20px;
+    padding: 0px 200px 0 200px;
+    height: 100%;
+    background-image: linear-gradient(#659DBD, #61b7e8);
+    background-color: #659DBD;
+    display: flex;
+    flex-direction: column;
+}
