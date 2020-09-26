@@ -2,6 +2,7 @@
     display: flex;
     align-items: flex-start;
     width: 100%;
+    background-color: #333;
 }
 
 .flex-item-one {
@@ -21,15 +22,16 @@
 .api {
     text-align: center;
     padding: 10px;
-    color: black;
+    color: #BC986A;
     width: 110px;
     border-radius: 3px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .api:hover {
+    background-color: #BC986A;
     box-shadow: 0px 0px 4px 1px #242582;
-    border-color: #333;
-    color: #F64C72;
+    border-color: #BC986A;
+    color: black;
 }
 
 .curl {
