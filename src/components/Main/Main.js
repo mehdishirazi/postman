@@ -231,12 +231,14 @@ class Body extends React.PureComponent {
                     </div>
                 </div>
                 {this.state.data === null ? null :
+                <div className="table-container">
                     <table>
                         <tbody>
                             {this.state.data === null ? null : <TableHeader info={this.state.data[0]} />}
                             {TableView}
                         </tbody>
-                    </table>}
+                    </table>
+                </div>}
             </div>
         )
     }

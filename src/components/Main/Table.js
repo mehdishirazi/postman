@@ -2,7 +2,6 @@ import React from 'react'
 
 let Table = (props) => {
     let value =[]
-    debugger
     for (let element in props.info){
         value.push(props.info[element])
     }

@@ -4,18 +4,19 @@
     flex-direction: column;
     text-align: center; 
     justify-content: center;
-    /* background-color: #242582; */
 }
 
 .input-verb {
     padding: 3px;
     border: 2px solid #333;
+    border-radius: 4px;
 }
 
 .input-url {
     border: 2px solid #333;
     padding: 3px;
     flex-grow: 2;
+    border-radius: 4px;
 }
 
 .btn {
@@ -25,7 +26,7 @@
     background-color: #333;
     color: #BC986A;
     border-radius: 4px;
-    border: 2.5px solid #333;
+    border: 2.5px solid #BC986A;
 }
 
 .btn:hover {
@@ -50,6 +51,7 @@
 
 .minusBtn {
     background-color: #ff4500;
+    padding: 2px 8px 2px 8px;
     border-radius: 3px;
     color: oldlace;
 }
@@ -82,6 +84,10 @@
     text-align: center;
 }
 
+.table-container {
+    overflow-x: auto;
+}
+
 table, th, td {
     border: 1px solid #333;
   }
@@ -101,12 +107,15 @@ table, th, td {
   .params-header {
       display: flex;
       flex-direction: column;
+      padding: 10px;
   }
 
   
   .params-header > div {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    gap: 6px;
 }
 
 .responseInput {
